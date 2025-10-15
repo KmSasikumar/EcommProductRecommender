@@ -1,27 +1,53 @@
-# Virtual environment
+# Python / env
 venv/
-ENV/
-env/
-
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 # Python
 __pycache__/
 *.py[cod]
 *.so
 *.pyd
 *.dll
-
-# Local development
-.env
-.vscode/
+*.h5
 *.db
 *.sqlite3
 
-# ML model files (use Git LFS or external storage)
-*.h5
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ML Model files (use Git LFS or external storage)
 models_store/**/*.h5
 src/models_store/**/*.h5
 
-# Distribution / packaging
-dist/
+# Local development
+.env
+.DS_Store
+
+# Databases / local data
+*.db
+src/*.db
+user_interactions.db
+
+# Models (ignore unless you opt into Git LFS)
+models_store/
+src/models_store/
+*.h5
+*.hdf5
+
+# Python packaging / build
 build/
+dist/
 *.egg-info/
+
+# logs
+*.log
