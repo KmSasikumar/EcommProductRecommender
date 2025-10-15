@@ -1,0 +1,42 @@
+[
+  {
+    "id": "item0",
+    "name": "Gaming Laptop",
+    "price": 1299.99,
+    "imageUrls": ["https://via.placeholder.com/300x300/0000FF/808080?Text=Gaming+Laptop"],
+    "category": "Electronics",
+    "tags": ["gaming", "laptop", "high-performance"]
+  },
+  {
+    "id": "item1",
+    "name": "Wireless Bluetooth Earbuds",
+    "price": 129.99,
+    "imageUrls": ["https://via.placeholder.com/300x300/00FF00/808080?Text=Earbuds"],
+    "category": "Electronics",
+    "tags": ["audio", "wireless", "bluetooth"]
+  },
+  {
+    "id": "item2",
+    "name": "Smart Fitness Watch",
+    "price": 199.95,
+    "imageUrls": ["https://via.placeholder.com/300x300/FF0000/808080?Text=Watch"],
+    "category": "Wearables",
+    "tags": ["fitness", "smartwatch", "health"]
+  },
+  {
+    "id": "item3",
+    "name": "Ergonomic Office Chair",
+    "price": 249.50,
+    "imageUrls": ["https://via.placeholder.com/300x300/FFFF00/808080?Text=Chair"],
+    "category": "Furniture",
+    "tags": ["office", "ergonomic", "comfort"]
+  },
+  {
+    "id": "item4",
+    "name": "Mechanical Gaming Keyboard",
+    "price": 89.99,
+    "imageUrls": ["https://via.placeholder.com/300x300/800080/808080?Text=Keyboard"],
+    "category": "Electronics",
+    "tags": ["gaming", "keyboard", "mechanical"]
+  }
+]
