@@ -28,3 +28,4 @@ dist/
 
 # logs
 *.log
+node_modules

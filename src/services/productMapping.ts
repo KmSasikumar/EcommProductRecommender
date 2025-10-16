@@ -1,50 +1,45 @@
 // services/productMapping.ts
 import { Product } from '../models/Product';
 
-// This is the same mapping as in main.py for consistency
-export const itemToProductMap: Record<string, Product> = {
-  "item0": {
-    id: 'item0',
-    name: 'Gaming Laptop',
-    price: 1299.99,
-    imageUrls: ['https://via.placeholder.com/300x300/0000FF/808080?Text=Gaming+Laptop'],
-    category: 'Electronics',
-    tags: ['gaming', 'laptop', 'high-performance'],
-  },
-  "item1": {
-    id: 'item1',
-    name: 'Wireless Bluetooth Earbuds',
-    price: 129.99,
-    imageUrls: ['https://via.placeholder.com/300x300/00FF00/808080?Text=Earbuds'],
-    category: 'Electronics',
-    tags: ['audio', 'wireless', 'bluetooth'],
-  },
-  "item2": {
-    id: 'item2',
-    name: 'Smart Fitness Watch',
-    price: 199.95,
-    imageUrls: ['https://via.placeholder.com/300x300/FF0000/808080?Text=Watch'],
-    category: 'Wearables',
-    tags: ['fitness', 'smartwatch', 'health'],
-  },
-  "item3": {
-    id: 'item3',
-    name: 'Ergonomic Office Chair',
-    price: 249.50,
-    imageUrls: ['https://via.placeholder.com/300x300/FFFF00/808080?Text=Chair'],
-    category: 'Furniture',
-    tags: ['office', 'ergonomic', 'comfort'],
-  },
-  "item4": {
-    id: 'item4',
-    name: 'Mechanical Gaming Keyboard',
-    price: 89.99,
-    imageUrls: ['https://via.placeholder.com/300x300/800080/808080?Text=Keyboard'],
-    category: 'Electronics',
-    tags: ['gaming', 'keyboard', 'mechanical'],
-  },
-};
+// --- NEW: Function to fetch product details from the Python API ---
+export const fetchProductByItemId = async (itemId: string): Promise<Product | null> => {
+  if (!itemId) {
+    return null;
+  }
 
-export const getProductByItemId = (itemId: string): Product | undefined => {
-  return itemToProductMap[itemId];
+  try {
+    // Make the API call to the new Python endpoint that queries ecommerce.db
+    const response = await fetch(`http://10.22.134.152:8000/search`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Add 'X-API-Key': 'testkey123' header if your /search endpoint requires it
+        // 'X-API-Key': 'testkey123',
+      },
+      body: JSON.stringify({ query: itemId }), // Search for the specific item_id
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`Search API error (${response.status}):`, errorText);
+      return null; // Return null on error
+    }
+
+    const data = await response.json();
+    
+    // Assuming the API returns an array of products
+    // Find the product with the matching id
+    const product = data.products.find((p: Product) => p.id === itemId);
+    
+    if (product) {
+      return product;
+    } else {
+      console.warn(`Product with ID '${itemId}' not found in search results.`);
+      return null; // Return null if product not found
+    }
+  } catch (error) {
+    // Catch network errors like 'Failed to fetch' or timeouts
+    console.error(`Error fetching product '${itemId}' from backend:`, error);
+    return null; // Return null on error
+  }
 };

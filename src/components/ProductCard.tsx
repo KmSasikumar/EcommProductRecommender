@@ -5,12 +5,11 @@ import { Product } from '../models/Product';
 
 type Props = {
   product: Product;
-  onPress: () => void; // Handler for when the card is pressed (tap/view)
-  onAddToCart: () => void; // Handler for when the "Add to Cart" button is pressed
+  onPress: () => void;
+  onAddToCart: () => void;
 };
 
 const ProductCard: React.FC<Props> = ({ product, onPress, onAddToCart }) => {
-  // Placeholder image - replace with actual product image URL if available
   const productImage = product.imageUrls?.[0] || `https://via.placeholder.com/150/0000FF/808080?Text=${encodeURIComponent(product.name)}`;
 
   return (
@@ -26,7 +25,6 @@ const ProductCard: React.FC<Props> = ({ product, onPress, onAddToCart }) => {
         </Text>
         <Text style={styles.category}>{product.category}</Text>
         <Text style={styles.price}>${product.price.toFixed(2)}</Text>
-        {/* <Text style={styles.tags}>{product.tags.join(', ')}</Text> */}
         <TouchableOpacity style={styles.button} onPress={onAddToCart}>
             <Text style={styles.buttonText}>Add to Cart</Text>
         </TouchableOpacity>
@@ -73,17 +71,12 @@ const styles = StyleSheet.create({
     color: '#007bff',
     marginTop: 4,
   },
-  tags: {
-     fontSize: 11,
-     color: '#aaa',
-     marginTop: 2,
-  },
   button: {
-    backgroundColor: '#28a745', // Green color for add to cart
+    backgroundColor: '#28a745',
     borderRadius: 4,
     paddingVertical: 6,
     paddingHorizontal: 12,
-    alignSelf: 'flex-start', // Align button to the left
+    alignSelf: 'flex-start',
     marginTop: 8,
   },
   buttonText: {
